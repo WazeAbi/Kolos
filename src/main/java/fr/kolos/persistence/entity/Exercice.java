@@ -9,7 +9,7 @@ public class Exercice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEx;
     @Column(name = "name_exercice")
-    private int nameExercice;
+    private String nameExercice;
     @Column(name = "description")
     private String description;
     @Column(name = "url_image")
@@ -23,11 +23,11 @@ public class Exercice {
         this.idEx = idEx;
     }
 
-    public int getNameExercice() {
+    public String getNameExercice() {
         return nameExercice;
     }
 
-    public void setNameExercice(int nameExercice) {
+    public void setNameExercice(String nameExercice) {
         this.nameExercice = nameExercice;
     }
 
