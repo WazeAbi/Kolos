@@ -19,8 +19,12 @@ public class Muscle {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id_muscle")
     private int idMuscle;
+
+    @Column(name = "name_muscle")
+    private String nameMuscle;
 
     /**
      * Returns the unique identifier of the muscle.
@@ -33,13 +37,29 @@ public class Muscle {
     }
 
     /**
-     * Sets the unique identifier of the muscle.
+     * Returns the unique identifier of the muscle.
      *
-     * @param idMuscle The unique identifier of the muscle.
+     * @return The unique identifier of the muscle.
      */
-
     public void setIdMuscle(int idMuscle) {
         this.idMuscle = idMuscle;
     }
 
+    /**
+     * Returns the name of the muscle.
+     *
+     * @return The name of the muscle.
+     */
+    public String getNameMuscle() {
+        return nameMuscle;
+    }
+
+    /**
+     * Returns the name of the muscle.
+     *
+     * @return The name of the muscle.
+     */
+    public void setNameMuscle(String nameMuscle) {
+        this.nameMuscle = nameMuscle;
+    }
 }
