@@ -1,4 +1,5 @@
 package fr.kolos.business.service.muscle;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +33,7 @@ public class MuscleServiceImpl implements IMuscleService {
             throw new EntityNotFoundException("Muscle with id " + id + " not found.");
         }
     }
+
     @Override
     public MuscleDto PutMuscle(MuscleDto muscleDto, int id) {
         Optional<Muscle> optionalMuscle = iMuscleRepository.findById(id);
@@ -45,7 +47,6 @@ public class MuscleServiceImpl implements IMuscleService {
             throw new EntityNotFoundException("Muscle with id " + id + " not found.");
         }
     }
-    
 
     @Override
     public void deletemuscle(int id) {
@@ -58,8 +59,10 @@ public class MuscleServiceImpl implements IMuscleService {
     }
 
     @Override
-    public void PostMuscle(MuscleDto muscleDto) {
+    public MuscleDto PostMuscle(MuscleDto muscleDto) {
         Muscle muscleEntity = MuscleConvert.getInstance().convertDtoToEntity(muscleDto);
-        iMuscleRepository.save(muscleEntity);
+        Muscle savedMuscle = iMuscleRepository.save(muscleEntity);
+        return MuscleConvert.getInstance().convertEntityToDto(savedMuscle);
     }
+
 }
