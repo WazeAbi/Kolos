@@ -1,4 +1,4 @@
-package fr.kolos.Kolos;
+package fr.kolos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

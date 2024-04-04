@@ -1,4 +1,4 @@
-package fr.kolos.Kolos;
+package fr.kolos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
