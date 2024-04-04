@@ -104,7 +104,7 @@ public class UserDto {
 	 *
 	 * @return The role of the user.
 	 */
-	public String getRoleUSer() {
+	public String getRoleUser() {
 		return roleUSer;
 	}
 
@@ -113,7 +113,7 @@ public class UserDto {
 	 *
 	 * @param roleUSer The role of the user.
 	 */
-	public void setRoleUSer(String roleUSer) {
+	public void setRoleUser(String roleUSer) {
 		this.roleUSer = roleUSer;
 	}
 

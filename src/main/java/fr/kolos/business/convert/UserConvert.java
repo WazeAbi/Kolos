@@ -48,7 +48,7 @@ public class UserConvert {
 		user.setUsername(dto.getUsername());
 		user.setEmail(dto.getEmail());
 		user.setPassword(dto.getPassword());
-		user.setRoleUSer(dto.getRoleUSer());
+		user.setRoleUser(dto.getRoleUser());
 
 		return user;
 	}
@@ -83,7 +83,7 @@ public class UserConvert {
 		dto.setUsername(user.getUsername());
 		dto.setEmail(user.getEmail());
 		dto.setPassword(user.getPassword());
-		dto.setRoleUSer(user.getRoleUSer());
+		dto.setRoleUser(user.getRoleUser());
 
 		return dto;
 	}
