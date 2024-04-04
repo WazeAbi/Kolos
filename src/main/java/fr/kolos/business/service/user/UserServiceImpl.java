@@ -27,7 +27,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public UserDto postUser(UserDto userDto) throws IllegalArgumentException {
+	public UserDto postUser(UserDto userDto) {
 		return UserConvert.getInstance()
 				.convertEntityToDto(repo.save(UserConvert.getInstance().convertDtoToEntity(userDto)));
 	}
