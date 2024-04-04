@@ -1,33 +1,32 @@
 package fr.kolos.presentation.controller.user;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.kolos.business.dto.UserDto;
 import fr.kolos.business.service.user.IUserService;
 
-
 /**
- * Controller class for handling requests to retrieve all users.
+ * Controller class for handling requests to update users.
  */
 @RestController
 @CrossOrigin
-public class GetUsersController {
+public class PutUserController {
 
 	private IUserService service;
 
 	/**
-	 * Retrieves all users.
+	 * Update a user.
 	 *
-	 * @return A list of DTOs representing all users.
+	 * @param userDto The DTO representing the user to be updated.
+	 * @return The DTO representing the updated user.
 	 */
-	@GetMapping("/users")
-	public List<UserDto> getUsers() {
-		return service.getUsers();
+	@PutMapping("/users")
+	public UserDto putUser(@RequestBody final UserDto userDto) {
+		return service.postUser(userDto);
 	}
 
 	/**
@@ -39,5 +38,5 @@ public class GetUsersController {
 	public void setService(IUserService service) {
 		this.service = service;
 	}
-	
+
 }
