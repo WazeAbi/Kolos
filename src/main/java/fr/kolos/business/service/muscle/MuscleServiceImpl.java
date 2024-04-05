@@ -1,68 +1,39 @@
 package fr.kolos.business.service.muscle;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 import fr.kolos.business.convert.MuscleConvert;
 import fr.kolos.business.dto.MuscleDto;
 import fr.kolos.persistence.entity.Muscle;
 import fr.kolos.persistence.repository.IMuscleRepository;
-import jakarta.persistence.EntityNotFoundException;
 
+import java.util.List;
+
+@Service
 public class MuscleServiceImpl implements IMuscleService {
-
-    private final IMuscleRepository iMuscleRepository;
-
-    public MuscleServiceImpl(IMuscleRepository iMuscleRepository) {
-        this.iMuscleRepository = iMuscleRepository;
-    }
+    public IMuscleRepository repoEx;
 
     @Override
     public List<MuscleDto> getMuscles() {
-        List<Muscle> muscles = iMuscleRepository.findAll();
-        return MuscleConvert.getInstance().convertListEntityToListDto(muscles);
+        final List<Muscle> result = repoEx.findAll();
+        return MuscleConvert.getInstance().convertListEntityToListDto(result);
     }
 
     @Override
     public MuscleDto getMuscleById(final int id) {
-        Optional<Muscle> optionalMuscle = iMuscleRepository.findById(id);
-        if (optionalMuscle.isPresent()) {
-            Muscle muscle = optionalMuscle.get();
-            return MuscleConvert.getInstance().convertEntityToDto(muscle);
-        } else {
-            throw new EntityNotFoundException("Muscle with id " + id + " not found.");
-        }
-    }
-
-    @Override
-    public MuscleDto PutMuscle(MuscleDto muscleDto, int id) {
-        Optional<Muscle> optionalMuscle = iMuscleRepository.findById(id);
-        if (optionalMuscle.isPresent()) {
-            Muscle existingMuscle = optionalMuscle.get();
-            existingMuscle.setIdMuscle(muscleDto.getIdMuscle());
-            existingMuscle.setNameMuscle(muscleDto.getNameMuscle());
-            Muscle updatedMuscle = iMuscleRepository.save(existingMuscle);
-            return MuscleConvert.getInstance().convertEntityToDto(updatedMuscle);
-        } else {
-            throw new EntityNotFoundException("Muscle with id " + id + " not found.");
-        }
+        return MuscleConvert.getInstance().convertEntityToDto(repoEx.getReferenceById(id));
     }
 
     @Override
     public void deletemuscle(int id) {
-        Optional<Muscle> optionalMuscle = iMuscleRepository.findById(id);
-        if (optionalMuscle.isPresent()) {
-            iMuscleRepository.deleteById(id);
-        } else {
-            throw new EntityNotFoundException("Muscle with id " + id + " not found.");
-        }
+        repoEx.deleteById(id);
     }
 
     @Override
-    public MuscleDto PostMuscle(MuscleDto muscleDto) {
-        Muscle muscleEntity = MuscleConvert.getInstance().convertDtoToEntity(muscleDto);
-        Muscle savedMuscle = iMuscleRepository.save(muscleEntity);
-        return MuscleConvert.getInstance().convertEntityToDto(savedMuscle);
+    public MuscleDto PostMuscle(MuscleDto muscle) {
+        return MuscleConvert.getInstance()
+                .convertEntityToDto(repoEx.save(MuscleConvert.getInstance().convertDtoToEntity(muscle)));
+
     }
 
 }
