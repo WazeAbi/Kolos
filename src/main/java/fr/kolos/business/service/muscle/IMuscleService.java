@@ -28,15 +28,6 @@ public interface IMuscleService {
     MuscleDto getMuscleById(final int id);
 
     /**
-     * Updates a muscle with the provided data.
-     *
-     * @param muscle The MuscleDto object containing the updated data.
-     * @param id     The identifier of the muscle to update.
-     * @return 
-     */
-     MuscleDto PutMuscle(MuscleDto muscle, int id);
-
-    /**
      * Deletes a muscle with the specified identifier.
      *
      * @param id The identifier of the muscle to delete.
@@ -49,5 +40,5 @@ public interface IMuscleService {
      * @param muscle The MuscleDto object containing the data for the new muscle.
      * @return 
      */
-    MuscleDto PostMuscle(MuscleDto muscle);
+    MuscleDto  PostMuscle(MuscleDto muscle);
 }
