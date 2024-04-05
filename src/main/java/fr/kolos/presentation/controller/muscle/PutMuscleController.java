@@ -18,11 +18,9 @@ public class PutMuscleController {
         this.service = service;
     }
 
-
-
     @PutMapping("/muscles")
-    public MuscleDto PutMuscle(@RequestBody final MuscleDto muscleDto){
-        return service.PutMuscle();
+    public MuscleDto PutMuscle(@RequestBody final MuscleDto muscleDto) {
+        return ((PutMuscleController) service).PutMuscle(muscleDto);
 
     }
 
