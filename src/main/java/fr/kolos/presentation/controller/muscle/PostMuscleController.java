@@ -14,6 +14,10 @@ public class PostMuscleController {
 
     private IMuscleService service;
 
+    /**
+     * @param muscleDto
+     * @return
+     */
     @PostMapping("/muscles")
     public MuscleDto PostMuscle(@RequestBody final MuscleDto muscleDto) {
         return service.PostMuscle(muscleDto);
