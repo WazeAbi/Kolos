@@ -4,6 +4,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.Customizer;
@@ -33,6 +34,7 @@ public class SpringSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 				.authorizeHttpRequests(authorize -> authorize
+						.requestMatchers(HttpMethod.GET, "/users").hasAuthority("SCOPE_ADMIN")
 						.requestMatchers("/users/**").hasAnyAuthority("SCOPE_USER")
 						.anyRequest().authenticated()
 				)
