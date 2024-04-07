@@ -25,7 +25,7 @@ public class User {
 	/**
 	 * The username of the user.
 	 */
-	@Column(name = "username", length = 100, nullable = false, unique = true)
+	@Column(name = "username", length = 100, nullable = false, unique = false)
 	private String username;
 
 	/**
