@@ -36,9 +36,10 @@ public class SpringSecurityConfig {
 				.authorizeHttpRequests(authorize -> authorize
 						.requestMatchers(HttpMethod.GET, "/users").hasAuthority("SCOPE_ADMIN")
 						.requestMatchers("/users/**").hasAnyAuthority("SCOPE_USER")
+						.requestMatchers("/register/**").permitAll()
 						.anyRequest().authenticated()
 				)
-				.csrf(csrf -> csrf.ignoringRequestMatchers("/login"))
+				.csrf(csrf -> csrf.ignoringRequestMatchers("/login").ignoringRequestMatchers("/register"))
 				.httpBasic(Customizer.withDefaults())
 				.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
