@@ -13,7 +13,7 @@ import fr.kolos.persistence.entity.User;
 @Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {
 
-	@Query("SELECT u FROM User u WHERE u.username = :username")
-	public User loadUserByUsername(final String username);
+	@Query("SELECT u FROM User u WHERE u.email = :email")
+	public User loadUserByEmail(final String email);
 
 }

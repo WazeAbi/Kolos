@@ -14,7 +14,7 @@ import fr.kolos.business.service.user.IUserService;
  */
 @RestController
 @CrossOrigin
-public class PostUserController {
+public class RegisterController {
 
 	private IUserService service;
 
@@ -25,7 +25,7 @@ public class PostUserController {
 	 * @return The DTO representing the newly created user.
 	 * @throws IllegalAccessException
 	 */
-	@PostMapping("/users")
+	@PostMapping("/register")
 	public UserDto postUser(@RequestBody final UserDto userDto) {
 		return service.postUser(userDto);
 	}

@@ -15,7 +15,7 @@ import fr.kolos.business.service.user.IUserService;
 import fr.kolos.presentation.controller.user.DeleteUserController;
 import fr.kolos.presentation.controller.user.GetUserByIdController;
 import fr.kolos.presentation.controller.user.GetUsersController;
-import fr.kolos.presentation.controller.user.PostUserController;
+import fr.kolos.presentation.controller.user.RegisterController;
 import fr.kolos.presentation.controller.user.PutUserController;
 
 
@@ -32,7 +32,7 @@ class UserControllerTest {
 	private GetUserByIdController getUserByIdController;
 
 	@InjectMocks
-	private PostUserController postUserController;
+	private RegisterController postUserController;
 	
 	@InjectMocks
 	private PutUserController putUserController;
