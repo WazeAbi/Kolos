@@ -47,7 +47,7 @@ public class ExerciseConvertTest {
         exercise1.setIdEx(2);
         listExercise.add(exercise);
         listExercise.add(exercise1);
-        List<ExerciseDto>  listExerciseDto = exerciseConvert.getInstance().convertListEntityToListDto(listExercise);
+        List<ExerciseDto>  listExerciseDto = exerciseConvert.convertListEntityToListDto(listExercise);
         assertEquals(listExerciseDto.size(),listExercise.size());
     }
     @Test
@@ -59,7 +59,7 @@ public class ExerciseConvertTest {
         exerciseDto2.setIdEx(2);
         ListExerciseDto.add(exerciseDto1);
         ListExerciseDto.add(exerciseDto2);
-        List<Exercise> listExercise = exerciseConvert.getInstance().convertListDtoToListEntity(ListExerciseDto);
+        List<Exercise> listExercise = exerciseConvert.convertListDtoToListEntity(ListExerciseDto);
         assertEquals(listExercise.size(),ListExerciseDto.size());
     }
 }

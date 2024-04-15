@@ -60,8 +60,8 @@ public class ExerciseControllerTest {
     @Test
     void setDeleteExerciseController() {
         try {
-            deleteExerciseController.deleteExercise(1);
-            verify(service, times(1)).deleteExercise(1);
+            deleteExerciseController.deleteExercise(exerciseDto);
+            verify(service, times(1)).deleteExercise(exerciseDto);
         } catch (Exception e) {
             fail(e);
         }
