@@ -1,6 +1,7 @@
 package fr.kolos.business.service.exercise;
 
 import fr.kolos.business.convert.ExerciseConvert;
+import fr.kolos.business.convert.UserConvert;
 import fr.kolos.business.dto.ExerciseDto;
 import fr.kolos.persistence.entity.Exercise;
 import fr.kolos.persistence.repository.IExerciseRepository;
@@ -28,13 +29,13 @@ public class ExerciseServiceImpl implements IExerciseService {
 
 
     @Override
-    public void deleteExercise(int id) {
-        repoEx.deleteById(id);
+    public void deleteExercise(ExerciseDto exerciseDto) {
+        repoEx.delete(convertEx.convertDtoToEntity(exerciseDto));
     }
 
     @Override
-    public void saveExercise(ExerciseDto exercise) {
-        repoEx.save(convertEx.convertDtoToEntity(exercise));
+    public void saveExercise(ExerciseDto exerciseDto) {
+        repoEx.save(convertEx.convertDtoToEntity(exerciseDto));
 
     }
 

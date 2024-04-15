@@ -9,6 +9,6 @@ import java.util.List;
 public interface IExerciseService {
     List<ExerciseDto> ListExercises();
     ExerciseDto getExerciseById(final int id);
-    void deleteExercise(int id);
-    void saveExercise(ExerciseDto exercise);
+    void deleteExercise(ExerciseDto exerciseDto);
+    void saveExercise(ExerciseDto exerciseDto);
 }
