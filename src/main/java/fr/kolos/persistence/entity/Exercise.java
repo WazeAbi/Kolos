@@ -1,9 +1,18 @@
-package fr.kolos.business.dto;
+package fr.kolos.persistence.entity;
 
-public class ExerciceDto {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "exercise")
+public class Exercise {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEx;
-    private String nameExercice;
+    @Column(name = "name_exercise")
+    private String nameExercise;
+    @Column(name = "description")
     private String description;
+    @Column(name = "url_image")
     private String urlImage;
 
     public int getIdEx() {
@@ -14,12 +23,12 @@ public class ExerciceDto {
         this.idEx = idEx;
     }
 
-    public String getNameExercice() {
-        return nameExercice;
+    public String getNameExercise() {
+        return nameExercise;
     }
 
-    public void setNameExercice(String nameExercice) {
-        this.nameExercice = nameExercice;
+    public void setNameExercise(String nameExercise) {
+        this.nameExercise = nameExercise;
     }
 
     public String getDescription() {
