@@ -21,7 +21,7 @@ public class ExerciseControllerTest {
     @InjectMocks
     private GetExerciseByIdController getExerciseByIdController;
     @InjectMocks
-    private CreateExerciseController saveExerciseController;
+    private SaveExerciseController saveExerciseController;
     @InjectMocks
     private ModifyExerciseController modifyExerciseController;
     @InjectMocks
@@ -40,7 +40,7 @@ public class ExerciseControllerTest {
     @Test
     void saveExerciseController() {
         try {
-            saveExerciseController.createExercise(exerciseDto);
+            saveExerciseController.saveExercise(exerciseDto);
             verify(service, times(1)).saveExercise(exerciseDto);
         } catch (Exception e) {
             fail(e);

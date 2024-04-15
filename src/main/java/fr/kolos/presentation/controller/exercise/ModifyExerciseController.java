@@ -13,7 +13,7 @@ public class ModifyExerciseController {
 
     @PutMapping("/exercises")
     public void modifyExercise(@RequestBody ExerciseDto exerciseDto) {
-        exerciseService.createExercise(exerciseDto);
+        exerciseService.saveExercise(exerciseDto);
     }
 
     @Autowired

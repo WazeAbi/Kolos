@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CreateExerciseController {
+public class SaveExerciseController {
     private IExerciseService exerciseService;
 
     @PostMapping("/exercise")
-    public void createExercise(@RequestBody ExerciseDto exercise) {
-        exerciseService.createExercise(exercise);
+    public void saveExercise(@RequestBody ExerciseDto exercise) {
+        exerciseService.saveExercise(exercise);
     }
 
     @Autowired
