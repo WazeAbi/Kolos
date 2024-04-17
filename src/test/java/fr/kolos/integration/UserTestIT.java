@@ -121,6 +121,21 @@ class UserTestIT {
 		}
 	}
 
+	@Test
+	@Order(3)
+	void testRegisterEndpoint() {
+		try {
+			ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/register",
+					user, String.class);
+
+			assertEquals(HttpStatus.OK, response.getStatusCode());
+		} catch (Exception e) {
+			fail(e);
+		}
+	}
+
+
+
 	
 
 }
