@@ -136,6 +136,25 @@ class UserTestIT {
 
 
 
-	
+	@Test
+	@Order(4)
+	void testDeleteUserEndpoint() {
+		try {
+			HttpHeaders headers = new HttpHeaders();
+	        headers.setBearerAuth(getToken());
+	        HttpEntity<UserDto> requestEntity = new HttpEntity<>(user, headers);
+
+			ResponseEntity<String> responseEntity = this.restTemplate.exchange(
+	                "http://localhost:" + port + "/users",
+	                HttpMethod.DELETE,
+	                requestEntity,
+	                String.class
+	        );
+
+	        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+		} catch (Exception e) {
+			fail(e);
+		}
+	}
 
 }
