@@ -53,8 +53,10 @@ class UserServiceTest {
 	@Test
 	void postUser() {
 		try {
+			UserDto dto = new UserDto();
+			dto.setPassword("Password1!");
 			when(repo.save(any(User.class))).thenReturn(user);
-			service.postUser(userDto);
+			service.postUser(dto);
 			verify(repo, times(1)).save(any(User.class));
 		} catch (Exception e) {
 			fail(e);
