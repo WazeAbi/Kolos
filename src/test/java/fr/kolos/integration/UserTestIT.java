@@ -99,5 +99,28 @@ class UserTestIT {
 			fail(e);
 		}
 	}
+	
+	@Test
+	@Order(2)
+	void testGetUsersEndpoint() {
+		try {
+			HttpHeaders headers = new HttpHeaders();
+	        headers.setBearerAuth(getToken());
+	        HttpEntity<UserDto> requestEntity = new HttpEntity<>(headers);
+
+			ResponseEntity<String> responseEntity = this.restTemplate.exchange(
+	                "http://localhost:" + port + "/users",
+	                HttpMethod.GET,
+	                requestEntity,
+	                String.class
+	        );
+
+	        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+		} catch (Exception e) {
+			fail(e);
+		}
+	}
+
+	
 
 }
