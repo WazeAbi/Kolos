@@ -133,11 +133,38 @@ class UserTestIT {
 			fail(e);
 		}
 	}
+	
+	@Test
+	@Order(4)
+	void testPutUserEndpoint() {
+		try {
+			HttpHeaders headers = new HttpHeaders();
+	        headers.setBearerAuth(getToken());
+	        UserDto user1 = new UserDto();
+	        user1.setIdUser(5);
+			user1.setEmail("email1");
+			user1.setUsername("username1");
+			user1.setRoleUser("ADMIN");
+			user1.setPassword("Password1!");
+	        HttpEntity<UserDto> requestEntity = new HttpEntity<>(user1,headers);
+
+			ResponseEntity<String> responseEntity = this.restTemplate.exchange(
+	                "http://localhost:" + port + "/users",
+	                HttpMethod.PUT,
+	                requestEntity,
+	                String.class
+	        );
+
+	        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+		} catch (Exception e) {
+			fail(e);
+		}
+	}
 
 
 
 	@Test
-	@Order(4)
+	@Order(5)
 	void testDeleteUserEndpoint() {
 		try {
 			HttpHeaders headers = new HttpHeaders();
