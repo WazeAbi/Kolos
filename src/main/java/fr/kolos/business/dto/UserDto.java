@@ -25,7 +25,7 @@ public class UserDto {
 	/**
 	 * The role of the user.
 	 */
-	private String roleUSer;
+	private String roleUser;
 
 	/**
 	 * Returns the unique identifier of the user.
@@ -105,7 +105,7 @@ public class UserDto {
 	 * @return The role of the user.
 	 */
 	public String getRoleUser() {
-		return roleUSer;
+		return roleUser;
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class UserDto {
 	 * @param roleUSer The role of the user.
 	 */
 	public void setRoleUser(String roleUSer) {
-		this.roleUSer = roleUSer;
+		this.roleUser = roleUSer;
 	}
 
 }

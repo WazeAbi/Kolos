@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
  * This class represents a User entity in the system.
  */
 @Entity
-@Table(name = "user")
+@Table(name = "\"user\"")
 public class User {
 
 	/**
@@ -44,7 +44,7 @@ public class User {
 	 * The role of the user.
 	 */
 	@Column(name = "role", length = 20, nullable = false)
-	private String roleUSer;
+	private String roleUser;
 
 	/**
 	 * Returns the unique identifier of the user.
@@ -124,7 +124,7 @@ public class User {
 	 * @return The role of the user.
 	 */
 	public String getRoleUser() {
-		return roleUSer;
+		return roleUser;
 	}
 
 	/**
@@ -133,6 +133,6 @@ public class User {
 	 * @param roleUSer The role of the user.
 	 */
 	public void setRoleUser(String roleUSer) {
-		this.roleUSer = roleUSer;
+		this.roleUser = roleUSer;
 	}
 }
