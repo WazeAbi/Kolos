@@ -25,3 +25,4 @@ jobs:
 
             - name: Push
               run: docker push nicolasdrp/kolos:latest
+              
