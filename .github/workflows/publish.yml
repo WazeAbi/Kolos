@@ -3,7 +3,6 @@ on:
     push:
         branches:
             - dev
-            - features/CICD
 
 jobs:
     Build-Deploy:
@@ -25,4 +24,3 @@ jobs:
 
             - name: Push
               run: docker push nicolasdrp/kolos:latest
-              
