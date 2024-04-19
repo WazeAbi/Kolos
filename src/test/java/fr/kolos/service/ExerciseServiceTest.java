@@ -1,6 +1,7 @@
-package fr.kolos.business.service.exercise;
+package fr.kolos.service;
 
 import fr.kolos.business.dto.ExerciseDto;
+import fr.kolos.business.service.exercise.IExerciseService;
 import fr.kolos.persistence.entity.Exercise;
 import fr.kolos.persistence.repository.IExerciseRepository;
 

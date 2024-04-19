@@ -1,4 +1,4 @@
-package fr.kolos;
+package fr.kolos.controller;
 
 import fr.kolos.business.dto.ExerciseDto;
 import fr.kolos.business.service.exercise.IExerciseService;

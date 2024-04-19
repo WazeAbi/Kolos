@@ -1,4 +1,4 @@
-package fr.kolos;
+package fr.kolos.convert;
 
 import fr.kolos.business.convert.ExerciseConvert;
 import fr.kolos.business.dto.ExerciseDto;
