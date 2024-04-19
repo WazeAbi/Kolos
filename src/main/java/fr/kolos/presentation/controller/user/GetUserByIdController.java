@@ -1,10 +1,9 @@
 package fr.kolos.presentation.controller.user;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.kolos.business.dto.UserDto;
@@ -12,22 +11,23 @@ import fr.kolos.business.service.user.IUserService;
 
 
 /**
- * Controller class for handling requests to retrieve all users.
+ * Controller class for handling requests to retrieve a user by ID.
  */
 @RestController
 @CrossOrigin
-public class GetUsersController {
+public class GetUserByIdController {
 
 	private IUserService service;
 
 	/**
-	 * Retrieves all users.
+	 * Retrieves a user by ID.
 	 *
-	 * @return A list of DTOs representing all users.
+	 * @param id The ID of the user to retrieve.
+	 * @return The DTO representing the retrieved user.
 	 */
-	@GetMapping("/users")
-	public List<UserDto> getUsers() {
-		return service.getUsers();
+	@GetMapping("/users/{id}")
+	public UserDto getUserById(@PathVariable final int id) {
+		return service.getUserById(id);
 	}
 
 	/**
@@ -39,5 +39,4 @@ public class GetUsersController {
 	public void setService(IUserService service) {
 		this.service = service;
 	}
-	
 }

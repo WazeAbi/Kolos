@@ -1,33 +1,31 @@
 package fr.kolos.presentation.controller.user;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.kolos.business.dto.UserDto;
 import fr.kolos.business.service.user.IUserService;
 
-
 /**
- * Controller class for handling requests to retrieve all users.
+ * Controller class for handling requests to delete users.
  */
 @RestController
 @CrossOrigin
-public class GetUsersController {
+public class DeleteUserController {
 
 	private IUserService service;
 
 	/**
-	 * Retrieves all users.
+	 * Deletes a user using the provided user DTO.
 	 *
-	 * @return A list of DTOs representing all users.
+	 * @param userDto The DTO representing the user to be deleted.
 	 */
-	@GetMapping("/users")
-	public List<UserDto> getUsers() {
-		return service.getUsers();
+	@DeleteMapping("/users")
+	public void deleteUser(@RequestBody final UserDto userDto) {
+		service.deleteUser(userDto);
 	}
 
 	/**
@@ -39,5 +37,4 @@ public class GetUsersController {
 	public void setService(IUserService service) {
 		this.service = service;
 	}
-	
 }
