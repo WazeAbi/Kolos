@@ -12,7 +12,7 @@ import java.util.List;
 public class GetListExerciseController {
     private IExerciseService exerciseService;
 
-    @GetMapping("/exercise")
+    @GetMapping("/exercises")
     public List<ExerciseDto> ListExercises() {
         return exerciseService.ListExercises();
     }

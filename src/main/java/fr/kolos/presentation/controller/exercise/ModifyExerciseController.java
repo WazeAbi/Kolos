@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ModifyExerciseController {
     private IExerciseService exerciseService;
 
-    @PutMapping("/exercise")
+    @PutMapping("/exercises")
     public void modifyExercise(@RequestBody ExerciseDto exerciseDto) {
         exerciseService.saveExercise(exerciseDto);
     }
