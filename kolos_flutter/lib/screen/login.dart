@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  State<Login> createState() => _LoginState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Kolos")),
       body: Column(
         children: [
-          const Text("Hello World"),
-          FloatingActionButton(onPressed: () => context.go('/login'))
+          const Text("Login"),
+          FloatingActionButton(onPressed: () => context.go('/test'))
         ],
       ),
     );
