@@ -11,14 +11,11 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Kolos")),
-      body: Column(
-        children: [
-          const Text("Login"),
-          FloatingActionButton(onPressed: () => context.go('/test'))
-        ],
-      ),
+    return Column(
+      children: [
+        const Text("Login"),
+        FloatingActionButton(onPressed: () => context.go('/'))
+      ],
     );
   }
 }

@@ -11,14 +11,10 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Kolos")),
-      body: Column(
-        children: [
-          const Text("Hello World"),
-          FloatingActionButton(onPressed: () => context.go('/login'))
-        ],
-      ),
+    return const Column(
+      children: [
+        Text("Hello World"),
+      ],
     );
   }
 }
