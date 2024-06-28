@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kolos_flutter/screen/homepage.dart';
 import 'package:kolos_flutter/screen/login.dart';
+import 'package:kolos_flutter/screen/settings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,34 +12,61 @@ final GoRouter _router = GoRouter(
   initialLocation: '/',
   routes: <RouteBase>[
     GoRoute(
-        path: '/',
-        builder: (BuildContext context, GoRouterState state) {
-          return const MyHomePage(title: "Kolos");
-        }),
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) {
+        return const MyScaffold(title: "Kolos", child: Homepage());
+      },
+    ),
     GoRoute(
-        path: '/test',
-        builder: (BuildContext context, GoRouterState state) {
-          return const Homepage();
-        }),
+      path: '/login',
+      builder: (BuildContext context, GoRouterState state) {
+        return const MyScaffold(title: "Kolos", child: Login());
+      },
+    ),
     GoRoute(
-        path: '/login',
-        builder: (BuildContext context, GoRouterState state) {
-          return const Login();
-        }),
+      path: '/settings',
+      builder: (BuildContext context, GoRouterState state) {
+        return const MyScaffold(title: "Kolos", child: Settings());
+      },
+    ),
   ],
 );
+
+const primary = Color(0xffD9C694);
+const secondary = Color(0xff5B5143);
+const light = Color(0xffFEFBEE);
+const textDark = Color(0xff1C1C1C);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Kolos',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 62, 183, 58)),
+        colorScheme: const ColorScheme.light(
+          onPrimary: primary,
+          onSecondary: secondary,
+          primary: light,
+          secondary: textDark,
+        ),
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(
+              color: textDark, fontWeight: FontWeight.w500, fontSize: 44),
+          titleMedium: TextStyle(
+              color: textDark, fontWeight: FontWeight.w500, fontSize: 32),
+          titleSmall: TextStyle(
+              color: textDark, fontWeight: FontWeight.w500, fontSize: 26),
+          displayLarge: TextStyle(
+              color: light, fontWeight: FontWeight.w500, fontSize: 44),
+          displayMedium: TextStyle(
+              color: light, fontWeight: FontWeight.w500, fontSize: 32),
+          displaySmall: TextStyle(
+              color: light, fontWeight: FontWeight.w500, fontSize: 26),
+        ),
+        scaffoldBackgroundColor: light,
         useMaterial3: true,
       ),
       routerConfig: _router,
@@ -46,82 +74,31 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
+class MyScaffold extends StatelessWidget {
   final String title;
+  final Widget child;
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  const MyScaffold({super.key, required this.title, required this.child});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        title: Text(title),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.go('/settings');
+            },
+            icon: const Icon(
+              Icons.settings_outlined,
+              color: Colors.black,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            FloatingActionButton(onPressed: () => context.go('/login'))
-          ],
-        ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: child,
     );
   }
 }
