@@ -23,11 +23,9 @@ class CustomElevatedButton extends StatelessWidget {
           backgroundColor: WidgetStatePropertyAll<Color>(isDark
               ? Theme.of(context).colorScheme.onSecondary
               : Theme.of(context).colorScheme.primary),
-          // padding:
-          //     MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.all(0)),
           fixedSize: WidgetStatePropertyAll<Size>(Size(
               MediaQuery.of(context).size.width * 0.6,
-              MediaQuery.of(context).size.width * 0.1))),
+              MediaQuery.of(context).size.width * 0.09))),
       child: Text(
         text,
         style: isDark

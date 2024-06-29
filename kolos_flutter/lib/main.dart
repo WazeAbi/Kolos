@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kolos_flutter/screen/homepage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:kolos_flutter/screen/choice.dart';
 import 'package:kolos_flutter/screen/login.dart';
 import 'package:kolos_flutter/screen/settings.dart';
 
@@ -14,7 +15,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const MyScaffold(title: "Kolos", child: Homepage());
+        return const MyScaffold(title: "Kolos", child: Choice());
       },
     ),
     GoRoute(
@@ -52,18 +53,19 @@ class MyApp extends StatelessWidget {
           primary: light,
           secondary: textDark,
         ),
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(
-              color: textDark, fontWeight: FontWeight.w500, fontSize: 44),
-          titleMedium: TextStyle(
+        textTheme: TextTheme(
+          titleLarge: GoogleFonts.ruda(
+              textStyle: const TextStyle(
+                  color: textDark, fontWeight: FontWeight.w700, fontSize: 44)),
+          titleMedium: const TextStyle(
               color: textDark, fontWeight: FontWeight.w500, fontSize: 32),
-          titleSmall: TextStyle(
+          titleSmall: const TextStyle(
               color: textDark, fontWeight: FontWeight.w500, fontSize: 26),
-          displayLarge: TextStyle(
+          displayLarge: const TextStyle(
               color: light, fontWeight: FontWeight.w500, fontSize: 44),
-          displayMedium: TextStyle(
+          displayMedium: const TextStyle(
               color: light, fontWeight: FontWeight.w500, fontSize: 32),
-          displaySmall: TextStyle(
+          displaySmall: const TextStyle(
               color: light, fontWeight: FontWeight.w500, fontSize: 26),
         ),
         scaffoldBackgroundColor: light,
@@ -83,21 +85,21 @@ class MyScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.onPrimary,
-        title: Text(title),
-        actions: [
-          IconButton(
-            onPressed: () {
-              context.go('/settings');
-            },
-            icon: const Icon(
-              Icons.settings_outlined,
-              color: Colors.black,
-            ),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Theme.of(context).colorScheme.onPrimary,
+      //   title: Text(title),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {
+      //         context.go('/settings');
+      //       },
+      //       icon: const Icon(
+      //         Icons.settings_outlined,
+      //         color: Colors.black,
+      //       ),
+      //     ),
+      //   ],
+      // ),
       body: child,
     );
   }
