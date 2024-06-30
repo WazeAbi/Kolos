@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kolos_flutter/screen/choice.dart';
 import 'package:kolos_flutter/screen/login.dart';
+import 'package:kolos_flutter/screen/register.dart';
 import 'package:kolos_flutter/screen/settings.dart';
 
 void main() {
@@ -15,13 +16,19 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const MyScaffold(title: "Kolos", child: Choice());
+        return const MyScaffoldWithoutAppBar(child: Choice());
       },
     ),
     GoRoute(
       path: '/login',
       builder: (BuildContext context, GoRouterState state) {
-        return const MyScaffold(title: "Kolos", child: Login());
+        return const MyScaffoldWithoutAppBar(child: Login());
+      },
+    ),
+    GoRoute(
+      path: '/register',
+      builder: (BuildContext context, GoRouterState state) {
+        return const MyScaffoldWithoutAppBar(child: Register());
       },
     ),
     GoRoute(
@@ -67,6 +74,12 @@ class MyApp extends StatelessWidget {
               color: light, fontWeight: FontWeight.w500, fontSize: 32),
           displaySmall: const TextStyle(
               color: light, fontWeight: FontWeight.w500, fontSize: 26),
+          labelMedium: GoogleFonts.ruda(
+              textStyle: const TextStyle(
+                  color: textDark, fontWeight: FontWeight.w500, fontSize: 16)),
+          labelSmall: GoogleFonts.ruda(
+              textStyle: const TextStyle(
+                  color: textDark, fontWeight: FontWeight.w500, fontSize: 12)),
         ),
         scaffoldBackgroundColor: light,
         useMaterial3: true,
@@ -85,21 +98,34 @@ class MyScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).colorScheme.onPrimary,
-      //   title: Text(title),
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () {
-      //         context.go('/settings');
-      //       },
-      //       icon: const Icon(
-      //         Icons.settings_outlined,
-      //         color: Colors.black,
-      //       ),
-      //     ),
-      //   ],
-      // ),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        title: Text(title),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.go('/settings');
+            },
+            icon: const Icon(
+              Icons.settings_outlined,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+      body: child,
+    );
+  }
+}
+
+class MyScaffoldWithoutAppBar extends StatelessWidget {
+  final Widget child;
+
+  const MyScaffoldWithoutAppBar({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       body: child,
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kolos_flutter/widget/custom_elevated_button.dart';
 import 'package:kolos_flutter/widget/custom_painter.dart';
 
@@ -48,7 +49,7 @@ class _ChoiceState extends State<Choice> {
                 const SizedBox(height: 25),
                 CustomElevatedButton(
                   text: "Inscription",
-                  callback: goToLogin,
+                  callback: goToRegister,
                   isDark: true,
                 ),
                 const Spacer(),
@@ -68,7 +69,11 @@ class _ChoiceState extends State<Choice> {
     );
   }
 
-  void goToLogin() {}
+  void goToLogin() {
+    context.go('/login');
+  }
 
-  void goToRegister() {}
+  void goToRegister() {
+    context.go('/register');
+  }
 }
