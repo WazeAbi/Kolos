@@ -13,8 +13,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _emailConfirmController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -39,12 +38,7 @@ class _RegisterState extends State<Register> {
             ),
             CustomInput(
               label: "Nom",
-              controller: _firstNameController,
-              isPassword: false,
-            ),
-            CustomInput(
-              label: "Prenom",
-              controller: _lastNameController,
+              controller: _usernameController,
               isPassword: false,
             ),
             CustomInput(
