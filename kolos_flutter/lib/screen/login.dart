@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kolos_flutter/widget/custom_back_button.dart';
 import 'package:kolos_flutter/widget/custom_elevated_button.dart';
@@ -21,6 +21,7 @@ class _LoginState extends State<Login> {
   bool isLoading = false;
 
   final _emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+  final storage = const FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -129,14 +130,12 @@ class _LoginState extends State<Login> {
     final String password = _passwordController.text;
 
     if (!_emailRegex.hasMatch(email)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Adresse email invalide.')));
+      showSnackbarMessage('Adresse email invalide.');
       return;
     }
 
     if (password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Le mot de passe est requis.')));
+      showSnackbarMessage('Le mot de passe est requis.');
       return;
     }
 
@@ -155,33 +154,36 @@ class _LoginState extends State<Login> {
         },
       );
 
-      if (!mounted) return;
-
       if (response.statusCode == 200) {
         final String token = response.body;
-        log(token);
+        await storage.write(key: 'authToken', value: token);
 
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Connexion réussie !')));
-        context.go('/home');
+        if (mounted) {
+          showSnackbarMessage('Connexion réussie !');
+          context.go('/homepage');
+        }
       } else if (response.statusCode == 401) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Identifiants incorrects.')));
+        showSnackbarMessage('Identifiants incorrects.');
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Erreur lors de la connexion.')));
+        showSnackbarMessage('Erreur lors de la connexion.');
       }
     } catch (e) {
-      if (!mounted) return;
-
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Erreur : $e')));
+      if (mounted) {
+        showSnackbarMessage('Erreur : $e');
+      }
     } finally {
       if (mounted) {
         setState(() {
           isLoading = false;
         });
       }
+    }
+  }
+
+  void showSnackbarMessage(String message) {
+    if (mounted) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(message)));
     }
   }
 
