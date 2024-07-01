@@ -1,6 +1,7 @@
 package fr.kolos.presentation.controller.user;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,6 +9,7 @@ import fr.kolos.configuration.JWTService;
 
 
 @RestController
+@CrossOrigin
 public class LoginController {
 
 	JWTService jwtService;

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -125,5 +124,70 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void validateForm() async {}
+  void validateForm() async {
+    final String email = _emailController.text;
+    final String password = _passwordController.text;
+
+    if (!_emailRegex.hasMatch(email)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Adresse email invalide.')));
+      return;
+    }
+
+    if (password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Le mot de passe est requis.')));
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    final String basicAuth = basicAuthHeader(email, password);
+
+    try {
+      final response = await http.post(
+        Uri.parse('http://localhost:8080/login'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': basicAuth,
+        },
+      );
+
+      if (!mounted) return;
+
+      if (response.statusCode == 200) {
+        final String token = response.body;
+        log(token);
+
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Connexion réussie !')));
+        context.go('/home');
+      } else if (response.statusCode == 401) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Identifiants incorrects.')));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Erreur lors de la connexion.')));
+      }
+    } catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Erreur : $e')));
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
+  }
+
+  String basicAuthHeader(String username, String password) {
+    final String credentials = '$username:$password';
+    final String encodedCredentials = base64Encode(utf8.encode(credentials));
+    return 'Basic $encodedCredentials';
+  }
 }
