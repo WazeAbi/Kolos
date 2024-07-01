@@ -129,7 +129,7 @@ class _RegisterState extends State<Register> {
                           ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          context.go('/cgu');
+                          context.go('/login');
                         })
                 ],
               ),
