@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kolos_flutter/screen/choice.dart';
+import 'package:kolos_flutter/screen/favorites.dart';
+import 'package:kolos_flutter/screen/homepage.dart';
 import 'package:kolos_flutter/screen/login.dart';
 import 'package:kolos_flutter/screen/register.dart';
+import 'package:kolos_flutter/screen/search.dart';
 import 'package:kolos_flutter/screen/settings.dart';
+import 'package:kolos_flutter/screen/statistics.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,6 +39,30 @@ final GoRouter _router = GoRouter(
       path: '/settings',
       builder: (BuildContext context, GoRouterState state) {
         return const MyScaffold(title: "Kolos", child: Settings());
+      },
+    ),
+    GoRoute(
+      path: '/homepage',
+      builder: (BuildContext context, GoRouterState state) {
+        return const MyScaffold(title: "Kolos", child: Homepage());
+      },
+    ),
+    GoRoute(
+      path: '/search',
+      builder: (BuildContext context, GoRouterState state) {
+        return const MyScaffold(title: "Kolos", child: Search());
+      },
+    ),
+    GoRoute(
+      path: '/statistics',
+      builder: (BuildContext context, GoRouterState state) {
+        return const MyScaffold(title: "Kolos", child: Statistics());
+      },
+    ),
+    GoRoute(
+      path: '/favorites',
+      builder: (BuildContext context, GoRouterState state) {
+        return const MyScaffold(title: "Kolos", child: Favorites());
       },
     ),
   ],
@@ -89,18 +117,65 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyScaffold extends StatelessWidget {
+class MyScaffold extends StatefulWidget {
   final String title;
   final Widget child;
 
   const MyScaffold({super.key, required this.title, required this.child});
 
   @override
+  State<MyScaffold> createState() => _MyScaffoldState();
+}
+
+class _MyScaffoldState extends State<MyScaffold> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        context.go('/homepage');
+        break;
+      case 1:
+        context.go('/search');
+        break;
+      case 2:
+        context.go('/statistics');
+        break;
+      case 3:
+        context.go('/favorites');
+        break;
+      case 4:
+        context.go('/profile');
+        break;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
-        title: Text(title),
+        title: Text(
+          widget.title,
+          style: GoogleFonts.ruda(fontSize: 35, fontWeight: FontWeight.w500),
+        ),
+        centerTitle: true,
+        leading: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage('assets/logo.png'),
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -113,7 +188,39 @@ class MyScaffold extends StatelessWidget {
           ),
         ],
       ),
-      body: child,
+      body: widget.child,
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Accueil',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Rechercher',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart),
+            label: 'Statistique',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border),
+            label: 'Favoris',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle_outlined),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor: Theme.of(context).colorScheme.secondary,
+        onTap: _onItemTapped,
+      ),
     );
   }
 }
