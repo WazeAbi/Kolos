@@ -35,7 +35,7 @@ class _ChoiceState extends State<Choice> {
                     color: Color(0xffD9C694),
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: AssetImage('../assets/logo.png'),
+                      image: AssetImage('assets/logo.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
