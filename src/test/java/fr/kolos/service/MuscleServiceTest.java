@@ -63,9 +63,9 @@ class MuscleServiceTest {
 	}
 
 	@Test
-	void deletemuscle() {
+	void deleteMuscle() {
 		try {
-			service.deletemuscle(muscleDto);
+			service.deleteMuscle(muscleDto);
 			verify(repo, times(1)).delete(any(Muscle.class));
 		} catch (Exception e) {
 			fail(e);

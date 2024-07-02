@@ -32,7 +32,7 @@ public interface IMuscleService {
      *
      * @param id The identifier of the muscle to delete.
      */
-    void deletemuscle(int id);
+    void deleteMuscle(final MuscleDto muscle);
 
     /**
      * Creates a new muscle with the provided data.
