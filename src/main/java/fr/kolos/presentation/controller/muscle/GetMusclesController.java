@@ -15,7 +15,7 @@ import fr.kolos.business.service.muscle.IMuscleService;
  */
 @RestController
 @CrossOrigin
-public class GetMuscleController{
+public class GetMusclesController{
 
 	private IMuscleService service;
 

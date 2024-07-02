@@ -31,7 +31,7 @@ public class MuscleServiceImpl implements IMuscleService {
     }
 
     @Override
-    public MuscleDto PostMuscle(MuscleDto muscle) {
+    public MuscleDto postMuscle(MuscleDto muscle) {
         return MuscleConvert.getInstance()
                 .convertEntityToDto(repoEx.save(MuscleConvert.getInstance().convertDtoToEntity(muscle)));
 

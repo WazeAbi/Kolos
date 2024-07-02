@@ -40,5 +40,5 @@ public interface IMuscleService {
      * @param muscle The MuscleDto object containing the data for the new muscle.
      * @return 
      */
-    MuscleDto  PostMuscle(MuscleDto muscle);
+    MuscleDto  postMuscle(MuscleDto muscle);
 }
