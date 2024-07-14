@@ -24,7 +24,7 @@ public class ExerciseConvert {
 
     public Exercise convertDtoToEntity(ExerciseDto exerciseDto) {
         Exercise exercise = new Exercise();
-        exercise.setIdEx(exerciseDto.getIdEx());
+        exercise.setIdExercise(exerciseDto.getIdEx());
         exercise.setNameExercise(exerciseDto.getNameExercise());
         exercise.setDescription(exerciseDto.getDescription());
         exercise.setUrlImage(exerciseDto.getUrlImage());
@@ -33,7 +33,7 @@ public class ExerciseConvert {
 
     public ExerciseDto convertEntityToDto(Exercise exercise) {
         ExerciseDto exerciseDto = new ExerciseDto();
-        exerciseDto.setIdEx(exercise.getIdEx());
+        exerciseDto.setIdEx(exercise.getIdExercise());
         exerciseDto.setNameExercise(exercise.getNameExercise());
         exerciseDto.setDescription(exercise.getDescription());
         exerciseDto.setUrlImage(exercise.getUrlImage());
