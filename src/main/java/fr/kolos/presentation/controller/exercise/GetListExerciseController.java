@@ -10,15 +10,15 @@ import java.util.List;
 
 @RestController
 public class GetListExerciseController {
-    private IExerciseService exerciseService;
+	private IExerciseService exerciseService;
 
-    @GetMapping("/exercises")
-    public List<ExerciseDto> ListExercises() {
-        return exerciseService.listExercises();
-    }
+	@GetMapping("/exercises")
+	public List<ExerciseDto> listExercises() {
+		return exerciseService.listExercises();
+	}
 
-    @Autowired
-    public void setExerciseService(IExerciseService exerciseService) {
-        this.exerciseService = exerciseService;
-    }
+	@Autowired
+	public void setExerciseService(IExerciseService exerciseService) {
+		this.exerciseService = exerciseService;
+	}
 }
