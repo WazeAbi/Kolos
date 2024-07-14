@@ -14,7 +14,7 @@ public class GetListExerciseController {
 
     @GetMapping("/exercises")
     public List<ExerciseDto> ListExercises() {
-        return exerciseService.ListExercises();
+        return exerciseService.listExercises();
     }
 
     @Autowired

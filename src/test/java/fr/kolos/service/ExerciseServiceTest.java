@@ -31,7 +31,7 @@ class ExerciseServiceTest {
 	@Test
 	void getExercices() {
 		try {
-			service.ListExercises();
+			service.listExercises();
 			verify(repository, times(1)).findAll();
 		} catch (Exception e) {
 			fail(e);
