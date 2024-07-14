@@ -18,10 +18,6 @@ public class DeleteMuscleController {
 
 	private IMuscleService service;
 
-	public IMuscleService getService() {
-		return service;
-	}
-
 	@Autowired
 	public void setService(IMuscleService service) {
 		this.service = service;
@@ -33,8 +29,8 @@ public class DeleteMuscleController {
 	 * @param muscleDto The DTO representing the muscle to be deleted.
 	 */
 	@DeleteMapping("/muscles")
-	public void deletemuscle(@RequestBody final MuscleDto muscleDto) {
-
+	public void deleteMuscle(@RequestBody final MuscleDto muscleDto) {
+		service.deleteMuscle(muscleDto);
 	}
 
 }
