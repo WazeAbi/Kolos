@@ -28,7 +28,7 @@ public class ExerciseConvertTest {
     @Test
     public void TestConvertEntityToDto(){
         Exercise exercise = new Exercise();
-        exercise.setIdEx(1);
+        exercise.setIdExercise(1);
         exercise.setNameExercise("Curl");
         exercise.setDescription("Les petits muscles");
         exercise.setUrlImage("test/test");
@@ -43,8 +43,8 @@ public class ExerciseConvertTest {
         List<Exercise> listExercise = new ArrayList<>();
         Exercise exercise = new Exercise();
         Exercise exercise1 = new Exercise();
-        exercise.setIdEx(1);
-        exercise1.setIdEx(2);
+        exercise.setIdExercise(1);
+        exercise1.setIdExercise(2);
         listExercise.add(exercise);
         listExercise.add(exercise1);
         List<ExerciseDto>  listExerciseDto = exerciseConvert.convertListEntityToListDto(listExercise);

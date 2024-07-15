@@ -24,7 +24,7 @@ public class ExerciseConvert {
 
     public Exercise convertDtoToEntity(ExerciseDto exerciseDto) {
         Exercise exercise = new Exercise();
-        exercise.setIdEx(exerciseDto.getIdEx());
+        exercise.setIdExercise(exerciseDto.getIdEx());
         exercise.setNameExercise(exerciseDto.getNameExercise());
         exercise.setDescription(exerciseDto.getDescription());
         exercise.setUrlImage(exerciseDto.getUrlImage());
@@ -33,24 +33,24 @@ public class ExerciseConvert {
 
     public ExerciseDto convertEntityToDto(Exercise exercise) {
         ExerciseDto exerciseDto = new ExerciseDto();
-        exerciseDto.setIdEx(exercise.getIdEx());
+        exerciseDto.setIdEx(exercise.getIdExercise());
         exerciseDto.setNameExercise(exercise.getNameExercise());
         exerciseDto.setDescription(exercise.getDescription());
         exerciseDto.setUrlImage(exercise.getUrlImage());
         return exerciseDto;
     }
     public List<Exercise> convertListDtoToListEntity(List<ExerciseDto> ListExerciseDto){
-        List<Exercise> ListExercise = new ArrayList<>();
+        List<Exercise> listExercise = new ArrayList<>();
         for (ExerciseDto exerciseDto : ListExerciseDto) {
-            ListExercise.add(convertDtoToEntity(exerciseDto));
+            listExercise.add(convertDtoToEntity(exerciseDto));
         }
-        return ListExercise;
+        return listExercise;
     }
     public List<ExerciseDto> convertListEntityToListDto(List<Exercise> ListExercise){
-        List<ExerciseDto> ListExerciseDto = new ArrayList<>();
+        List<ExerciseDto> listExerciseDto = new ArrayList<>();
         for (Exercise exercise : ListExercise) {
-            ListExerciseDto.add(convertEntityToDto(exercise));
+            listExerciseDto.add(convertEntityToDto(exercise));
         }
-        return ListExerciseDto;
+        return listExerciseDto;
     }
 }

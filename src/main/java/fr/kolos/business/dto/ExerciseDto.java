@@ -1,17 +1,17 @@
 package fr.kolos.business.dto;
 
 public class ExerciseDto {
-    private int idEx;
+    private int idExercise;
     private String nameExercise;
     private String description;
     private String urlImage;
 
     public int getIdEx() {
-        return idEx;
+        return idExercise;
     }
 
     public void setIdEx(int idEx) {
-        this.idEx = idEx;
+        this.idExercise = idEx;
     }
 
     public String getNameExercise() {

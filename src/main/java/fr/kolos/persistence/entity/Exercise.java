@@ -7,7 +7,8 @@ import jakarta.persistence.*;
 public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEx;
+    @Column(name = "id_exercise")
+	private int idExercise;
     @Column(name = "name_exercise")
     private String nameExercise;
     @Column(name = "description")
@@ -15,12 +16,12 @@ public class Exercise {
     @Column(name = "url_image")
     private String urlImage;
 
-    public int getIdEx() {
-        return idEx;
+    public int getIdExercise() {
+        return idExercise;
     }
 
-    public void setIdEx(int idEx) {
-        this.idEx = idEx;
+    public void setIdExercise(int idEx) {
+        this.idExercise = idEx;
     }
 
     public String getNameExercise() {

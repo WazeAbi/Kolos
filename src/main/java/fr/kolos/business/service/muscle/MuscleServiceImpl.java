@@ -11,7 +11,8 @@ import java.util.List;
 
 @Service
 public class MuscleServiceImpl implements IMuscleService {
-    public IMuscleRepository repoEx;
+	
+    private IMuscleRepository repoEx;
 
     @Override
     public List<MuscleDto> getMuscles() {
@@ -25,12 +26,12 @@ public class MuscleServiceImpl implements IMuscleService {
     }
 
     @Override
-    public void deletemuscle(int id) {
-        repoEx.deleteById(id);
+    public void deleteMuscle(final MuscleDto muscle) {
+    	repoEx.delete(MuscleConvert.getInstance().convertDtoToEntity(muscle));
     }
 
     @Override
-    public MuscleDto PostMuscle(MuscleDto muscle) {
+    public MuscleDto postMuscle(MuscleDto muscle) {
         return MuscleConvert.getInstance()
                 .convertEntityToDto(repoEx.save(MuscleConvert.getInstance().convertDtoToEntity(muscle)));
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface IExerciseService {
-    List<ExerciseDto> ListExercises();
+    List<ExerciseDto> listExercises();
     ExerciseDto getExerciseById(final int id);
     void deleteExercise(ExerciseDto exerciseDto);
     void saveExercise(ExerciseDto exerciseDto);

@@ -30,7 +30,6 @@ public class RegisterController {
 	 */
 	@PostMapping("/register")
 	public  ResponseEntity<String> postUser(@RequestBody final UserDto userDto) {
-//		return service.postUser(userDto);
 		try {
 			service.postUser(userDto);
             return ResponseEntity.ok("User registered successfully");
