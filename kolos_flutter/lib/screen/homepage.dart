@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:go_router/go_router.dart';
+import 'package:kolos_flutter/service/user_service.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -67,17 +71,20 @@ class _HomepageState extends State<Homepage> {
   void checkLogged() async {
     String? token;
     bool valid = false;
-    if (await storage.containsKey(key: "token")) {
-      token = await storage.read(key: "token");
-      // valid = await UserService.checkValidity(token!);
+    if (await storage.containsKey(key: "authToken")) {
+      token = await storage.read(key: "authToken");
+      valid = await UserService.checkValidity(token!);
     }
+
+    if (!mounted) return;
+
     if (token == null) {
-      // redirect();
+      context.go('/');
     } else {
       if (valid == true) {
         return;
       } else {
-        // redirect();
+        context.go('/');
       }
     }
   }
