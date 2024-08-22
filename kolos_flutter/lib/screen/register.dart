@@ -36,12 +36,12 @@ class _RegisterState extends State<Register> {
         child: Column(
           children: [
             const SizedBox(
-              height: 50,
+              height: 80,
             ),
             Row(
               children: [ const CustomBackButton(),
                 const SizedBox(
-                 width: 40,
+                 width: 35,
                 ),
               Text(
                 'Inscription',
