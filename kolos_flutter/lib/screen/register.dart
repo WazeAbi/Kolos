@@ -35,11 +35,19 @@ class _RegisterState extends State<Register> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
         child: Column(
           children: [
-            const CustomBackButton(),
-            Text(
-              'Inscription',
-              style: Theme.of(context).textTheme.titleLarge,
+            const SizedBox(
+              height: 50,
             ),
+            Row(
+              children: [ const CustomBackButton(),
+                const SizedBox(
+                 width: 40,
+                ),
+              Text(
+                'Inscription',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),],),
+
             const SizedBox(
               height: 15,
             ),
